@@ -18,6 +18,12 @@ import entities.Destination;
 @ApplicationScoped
 public class Service {
 	
+	
+	
+	public Service() {
+		
+	}
+
 	private static final Logger LOG =Logger.getLogger("service");
 	@Inject private BoVoyagesDAO dao;
 	

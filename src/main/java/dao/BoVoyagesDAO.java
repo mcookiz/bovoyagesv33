@@ -25,7 +25,7 @@ public class BoVoyagesDAO {
 	public Destination getDestinationById(long id) {
 		Destination destination = em.find(Destination.class, id);
 
-		em.close();
+		
 
 		return destination;
 
@@ -35,7 +35,7 @@ public class BoVoyagesDAO {
 		Query q = em.createNamedQuery("getDestinationByRegion");
 		q.setParameter("region", region);
 		List<Destination> ld = q.getResultList();
-		em.close();
+		
 		return ld;
 
 	}
@@ -51,6 +51,7 @@ public class BoVoyagesDAO {
 			em.merge(d);
 		}
 		ut.commit();
+		
 
 	}
 
@@ -60,6 +61,7 @@ public class BoVoyagesDAO {
 		ut.begin();
 		em.remove(id);
 		ut.commit();
+		
 	}
 
 	
@@ -68,6 +70,6 @@ public class BoVoyagesDAO {
 		Query q = em.createNamedQuery("getAll");
 		List<Destination> ld =q.getResultList();
 		
-		em.close();
+		
 		return ld;}
 }

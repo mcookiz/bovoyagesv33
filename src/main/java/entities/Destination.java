@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,20 +39,21 @@ public class Destination {
 	private String description;
 	@Column(name="region")
 	private String region;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="ke_destination")
+//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	@JoinColumn(name="fk_destination")
+//	@JoinTable(name= "dates_voyages")
 	
-	private List<DatesVoyage> listeDV;
+//	private List<DatesVoyage> listeDV;
 	
 	public Destination(){}
 	
 	
-	public Destination(String description, String region, List<DatesVoyage> listeDV) {
+	public Destination(String description, String region) {
 		
 		
 		this.description = description;
 		this.region = region;
-		this.listeDV = listeDV;
+//		this.listeDV = listeDV;
 	}
 
 
@@ -75,18 +77,18 @@ public class Destination {
 		this.region = region;
 	}
 
-	public List<DatesVoyage> getListeDV() {
-		return listeDV;
-	}
-	public void setListeDV(List<DatesVoyage> listeDV) {
-		this.listeDV = listeDV;
-	}
+//	public List<DatesVoyage> getListeDV() {
+//		return listeDV;
+//	}
+//	public void setListeDV(List<DatesVoyage> listeDV) {
+//		this.listeDV = listeDV;
+//	}
 
 
 	@Override
 	public String toString() {
 		return "Destination [id=" + id +", description=" + description
-				+ ", region=" + region + ", listeDV=" + listeDV + "]";
+				+ ", region=" + region +"]";
 	}
 
 	
