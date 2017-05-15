@@ -2,21 +2,51 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+@NamedQueries({@NamedQuery(name="getDestinationById",
+							query="select d from Destination d where d.id=:id"),
+				@NamedQuery(name="getDestinationBRegion",
+							query="select d from Destination d where d.region=:region ")
+//				@NamedQuery(name="showDates",
+//							query="select d from Destination d where d."}
+})
+
+@Entity
+@Table(name="destinations")
 public class Destination {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="pk_destination")
 	private long id;
-	private String continent;
-	private String pays;
+	
+	@Column(name="description")
 	private String description;
+	@Column(name="region")
 	private String region;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="ke_destination")
+	
 	private List<DatesVoyage> listeDV;
 	
 	public Destination(){}
 	
 	
-	public Destination(String continent, String pays, String description, String region, List<DatesVoyage> listeDV) {
+	public Destination(String description, String region, List<DatesVoyage> listeDV) {
 		
-		this.continent = continent;
-		this.pays = pays;
+		
 		this.description = description;
 		this.region = region;
 		this.listeDV = listeDV;
@@ -29,18 +59,7 @@ public class Destination {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getContinent() {
-		return continent;
-	}
-	public void setContinent(String continent) {
-		this.continent = continent;
-	}
-	public String getPays() {
-		return pays;
-	}
-	public void setPays(String pays) {
-		this.pays = pays;
-	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -64,7 +83,7 @@ public class Destination {
 
 	@Override
 	public String toString() {
-		return "Destination [id=" + id + ", continent=" + continent + ", pays=" + pays + ", description=" + description
+		return "Destination [id=" + id +", description=" + description
 				+ ", region=" + region + ", listeDV=" + listeDV + "]";
 	}
 

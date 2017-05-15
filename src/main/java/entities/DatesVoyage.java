@@ -2,10 +2,23 @@ package entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class DatesVoyage {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="pk_date_voyage")
 	private long id;
+	@Column(name="date_depart")
 	private Date dateDepart;
+	@Column(name="date_retour")
 	private Date dateRetour;
+	@Column(name="prixHT")
 	private long prix;
 	
 	public DatesVoyage(){}
