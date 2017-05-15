@@ -55,11 +55,11 @@ public class BoVoyagesDAO {
 
 	}
 
-	public void remove(Destination d) throws NotSupportedException, SystemException, SecurityException,
+	public void remove(long id) throws NotSupportedException, SystemException, SecurityException,
 			IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 
 		ut.begin();
-		em.remove(d);
+		em.remove(id);
 		ut.commit();
 	}
 
