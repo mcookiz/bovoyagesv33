@@ -17,11 +17,15 @@ import javax.transaction.UserTransaction;
 import entities.Destination;
 
 @Dependent
-public class BoVoyagesDAO {
+public class BoVoyagesDAO implements IBoVoyagesDAO {
 	@PersistenceContext(unitName = "bovoyage") private EntityManager em;
 	@Resource private UserTransaction ut;
 	
 
+	/* (non-Javadoc)
+	 * @see dao.IBoVoyagesDAO#getDestinationById(long)
+	 */
+	@Override
 	public Destination getDestinationById(long id) {
 		Destination destination = em.find(Destination.class, id);
 
@@ -31,6 +35,10 @@ public class BoVoyagesDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.IBoVoyagesDAO#getDestinationByRegion(java.lang.String)
+	 */
+	@Override
 	public List<Destination> getDestinationByRegion(String region) {
 		Query q = em.createNamedQuery("getDestinationByRegion");
 		q.setParameter("region", region);
@@ -40,6 +48,10 @@ public class BoVoyagesDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.IBoVoyagesDAO#saveOrUpdate(entities.Destination)
+	 */
+	@Override
 	public void saveOrUpdate(Destination d) throws NotSupportedException, SystemException, SecurityException,
 			IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 		ut.begin();
@@ -55,6 +67,10 @@ public class BoVoyagesDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.IBoVoyagesDAO#remove(long)
+	 */
+	@Override
 	public void remove(long id) throws NotSupportedException, SystemException, SecurityException,
 			IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 
@@ -65,6 +81,10 @@ public class BoVoyagesDAO {
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see dao.IBoVoyagesDAO#getAll()
+	 */
+	@Override
 	public List<Destination> getAll(){
 		
 		Query q = em.createNamedQuery("getAll");

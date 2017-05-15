@@ -12,7 +12,7 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
-import dao.BoVoyagesDAO;
+import dao.IBoVoyagesDAO;
 import entities.Destination;
 @Named("service")
 @ApplicationScoped
@@ -25,7 +25,7 @@ public class Service {
 	}
 
 	private static final Logger LOG =Logger.getLogger("service");
-	@Inject private BoVoyagesDAO dao;
+	@Inject private IBoVoyagesDAO dao;
 	
 	public Destination getDestinationById(long id) {
 		
