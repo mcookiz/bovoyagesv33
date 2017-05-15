@@ -20,7 +20,7 @@ import javax.persistence.Table;
 							query="select d from Destination d where d.id=:id"),
 				@NamedQuery(name="getDestinationBRegion",
 							query="select d from Destination d where d.region=:region "),
-				@NamedQuery(name="getAll",query="from Destination")
+				@NamedQuery(name="getAll",query="select d from Destination d")
 //				@NamedQuery(name="showDates",
 //							query="select d from Destination d where d."}
 })

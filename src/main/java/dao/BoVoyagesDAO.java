@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -18,10 +18,9 @@ import entities.Destination;
 
 @Dependent
 public class BoVoyagesDAO {
-	@PersistenceUnit(unitName = "bovoyage")
-	@Resource
-	private UserTransaction ut;
-	private EntityManager em;
+	@PersistenceContext(unitName = "bovoyage") private EntityManager em;
+	@Resource private UserTransaction ut;
+	
 
 	public Destination getDestinationById(long id) {
 		Destination destination = em.find(Destination.class, id);
