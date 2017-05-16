@@ -1,6 +1,7 @@
 package jsf;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -19,6 +20,7 @@ public class Bean implements Serializable {
     private Long id;
 	private String region;
 	private String description;
+	private List<Destination>ld;
 
 	public Long getId() {
 		return id;
@@ -78,6 +80,13 @@ public class Bean implements Serializable {
 		
 		
 	}
+	
+	public String startSearchByRegion(String region) {
+		startConversation();
+		ld = service.getDestinationByRegion(region);
+		return "searchDestination";	
+	}
+	
 	public String remove(long id) {
 		Destination d = new Destination(description, region);
 		d.setId(id);
