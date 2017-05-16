@@ -42,9 +42,9 @@ public class Service {
 		
 	}
 	
-	public void update(long id){
-		LOG.info("maj effectuée" + id);
-		Destination d=dao.getDestinationById(id);
+	public void update(Destination d){
+		LOG.info("maj effectuée" + d.getId());
+		
 		try {
 			dao.saveOrUpdate(d);
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException

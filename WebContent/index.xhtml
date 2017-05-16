@@ -31,7 +31,7 @@
 
 
 				<h:column>
-				<h:commandButton value="update" action="update(d.id)"></h:commandButton>
+				<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
 				<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
 				</h:column>
 

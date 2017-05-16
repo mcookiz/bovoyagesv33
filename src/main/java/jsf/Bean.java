@@ -16,9 +16,17 @@ public class Bean implements Serializable {
 	@Inject Service service;
 	
 	@Inject Conversation conv;
-
+    private Long id;
 	private String region;
 	private String description;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Bean() {
 	}
@@ -46,17 +54,20 @@ public class Bean implements Serializable {
 
 	}
 
-	public String update(long id) {
+	public String update() {
 		Destination d = new Destination(description, region);
 		d.setId(id);
-		service.update(id);
+		service.update(d);
 		return "index";
 
 	}
 	public String startUpdate(long id) {
-		
-		Destination d = new Destination(description, region);
-		d.setId(id);
+		startConversation();
+		Destination d = service.getDestinationById(id);
+		this.setId(d.getId());
+		this.setRegion(d.getRegion());
+		this.setDescription(d.getDescription());
+		return "update";
 		
 		
 	}

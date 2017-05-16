@@ -14,6 +14,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+
 import entities.Destination;
 
 @Dependent
@@ -75,7 +76,8 @@ public class BoVoyagesDAO implements IBoVoyagesDAO {
 			IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 
 		ut.begin();
-		em.remove(id);
+		Destination d = em.find(Destination.class, id);
+		em.remove(d);
 		ut.commit();
 		
 	}
