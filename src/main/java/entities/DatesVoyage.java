@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name="dates_voyages")
 public class DatesVoyage {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pk_date_voyage")
 	private long id;
 	@Column(name="date_depart")

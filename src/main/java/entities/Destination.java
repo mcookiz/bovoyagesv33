@@ -31,7 +31,7 @@ import javax.persistence.Table;
 public class Destination {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pk_destination")
 	private long id;
 	

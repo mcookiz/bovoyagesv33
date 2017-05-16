@@ -50,14 +50,21 @@ public class Bean implements Serializable {
 	public String save() {
 		Destination d = new Destination(description, region);
 		service.save(d);
+		endConversation();
 		return "index";
 
 	}
+	
+	public String startSave(Destination d) {
+		startConversation();
+		
+		return "addDestination";}
 
 	public String update() {
 		Destination d = new Destination(description, region);
 		d.setId(id);
 		service.update(d);
+		endConversation();
 		return "index";
 
 	}
@@ -67,7 +74,6 @@ public class Bean implements Serializable {
 		this.setId(d.getId());
 		this.setRegion(d.getRegion());
 		this.setDescription(d.getDescription());
-		endConversation();
 		return "updateDestination";
 		
 		

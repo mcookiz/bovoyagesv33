@@ -55,7 +55,7 @@ public class Service {
 	}
 	
 	public void save(Destination d){
-		LOG.info("sauvegarde effectuée" +d.getId());
+		LOG.info("sauvegarde effectuée");
 		try {
 			dao.saveOrUpdate(d);
 		} catch (SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException
