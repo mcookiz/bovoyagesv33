@@ -10,11 +10,16 @@
 	<title>BoVoyages</title>
 </h:head>
 <h:body>
+
 	<f:view>
-		<h2>Liste des Destinations pour la Région <h:outputText value="#{bean.region}"></h:outputText></h2>
+		<h2>
+			Liste des Destinations pour la Région
+			<h:outputText value="#{bean.region}"></h:outputText>
+		</h2>
+
 		<h:form>
-			
-			<h:dataTable value="#{service.}" var="d">
+
+			<h:dataTable value="#{bean.ld}" var="d">
 
 				<h:column>
 					<f:facet name="header">Region</f:facet>
@@ -26,14 +31,15 @@
     				#{d.description}
     			</h:column>
 
+				<h:column>
+					<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
+					<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
+				</h:column>
 
-				
 
 			</h:dataTable>
 
-
-
-
+<h:commandButton value="retour" action="index"></h:commandButton>
 		</h:form>
 	</f:view>
 

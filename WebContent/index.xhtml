@@ -14,8 +14,9 @@
 		<h2>Liste des Destinations</h2>
 		<h:form>
 			<h:commandButton value="add Destination" action="addDestination"></h:commandButton>
-			Rechercher par région : <h:inputText id="region" value="searchByRegion"></h:inputText>
-			<h:commandButton value="Rechercher" action="addDestination"></h:commandButton>
+			
+			Rechercher par région : <h:inputText value="#{bean.region}"></h:inputText>
+			<h:commandButton value="Rechercher" action="#{bean.startSearchByRegion(bean.region)}"></h:commandButton>
 
 
 
@@ -33,10 +34,14 @@
 
 
 				<h:column>
+				
 				<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
 				<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
 				</h:column>
 
+
+
+			
 			</h:dataTable>
 
 

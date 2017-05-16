@@ -83,8 +83,8 @@ public class Bean implements Serializable {
 	
 	public String startSearchByRegion(String region) {
 		startConversation();
-		ld = service.getDestinationByRegion(region);
-		return "searchDestination";	
+		this.setLd(service.getDestinationByRegion(region));
+		return "searchByRegion";	
 	}
 	
 	public String remove(long id) {
@@ -105,5 +105,13 @@ public class Bean implements Serializable {
 		if(!conv.isTransient()){
 			conv.end();
 		}
+	}
+
+	public List<Destination> getLd() {
+		return ld;
+	}
+
+	public void setLd(List<Destination> ld) {
+		this.ld = ld;
 	}
 }
