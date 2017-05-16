@@ -67,6 +67,7 @@ public class Bean implements Serializable {
 		this.setId(d.getId());
 		this.setRegion(d.getRegion());
 		this.setDescription(d.getDescription());
+		endConversation();
 		return "update";
 		
 		
