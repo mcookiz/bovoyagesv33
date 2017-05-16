@@ -53,7 +53,13 @@ public class Bean implements Serializable {
 		return "index";
 
 	}
-
+	public String startUpdate(long id) {
+		
+		Destination d = new Destination(description, region);
+		d.setId(id);
+		
+		
+	}
 	public String remove(long id) {
 		Destination d = new Destination(description, region);
 		d.setId(id);

@@ -10,13 +10,13 @@
 	<title>BoVoyages</title>
 </h:head>
 <h:body>
- <f:event listener="#{bean.startConversation()}" type="preRenderView"></f:event>
+<!--  <f:event listener="#{bean.startConversation()}" type="preRenderView"></f:event> -->
 	<f:view>
 		<h2>Mise à jour d'une destination</h2>
 		<h:form>
 		<h:inputText id="description" value="#{bean.description}"></h:inputText>
 		<h:inputText id="region" value="#{bean.region}"></h:inputText>
-		<h:commandButton values="valider" action="#{bean.update}">
+		<h:commandButton values="valider" action="#{bean.update()}">
 			
 		
 		
