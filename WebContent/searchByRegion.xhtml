@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>BoVoyages</title>
@@ -19,27 +20,27 @@
 
 		<h:form>
 
-			<h:dataTable value="#{bean.ld}" var="d">
+			<p:dataTable value="#{bean.ld}" var="d">
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Region</f:facet>
     				#{d.region}
-    			</h:column>
+    			</p:column>
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">Description</f:facet>
     				#{d.description}
-    			</h:column>
+    			</p:column>
 
-				<h:column>
-					<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
-					<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
-				</h:column>
+				<p:column>
+					<p:commandButton value="update" action="#{bean.startUpdate(d.id)}"></p:commandButton>
+					<p:commandButton value="delete" action="#{service.remove(d.id)}"></p:commandButton>
+				</p:column>
 
 
-			</h:dataTable>
+			</p:dataTable>
 
-<h:commandButton value="retour" action="index"></h:commandButton>
+<p:commandButton value="retour" action="index"></p:commandButton>
 		</h:form>
 	</f:view>
 

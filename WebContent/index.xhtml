@@ -15,10 +15,11 @@
 		<h2>Liste des Destinations</h2>
 		<h:form>
 		Rechercher par région : <p:inputText value="#{bean.region}"></p:inputText>
+		<p:commandButton value="Rechercher" action="#{bean.startSearchByRegion(bean.region)}"></p:commandButton>
 			<p:commandButton value="add Destination" action="addDestination"></p:commandButton>
 			
 			
-			<p:commandButton value="Rechercher" action="#{bean.startSearchByRegion(bean.region)}"></p:commandButton>
+			
 
 
 

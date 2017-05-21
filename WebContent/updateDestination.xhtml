@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>BoVoyages</title>
@@ -14,11 +15,11 @@
 	<f:view>
 		<h2>Mise à jour d'une destination</h2>
 		<h:form>
-		Region : <h:inputText id="region" value="#{bean.region}"></h:inputText>
-		Description : <h:inputText id="description" value="#{bean.description}"></h:inputText>
+		Region : <p:inputText id="region" value="#{bean.region}"></p:inputText>
+		Description : <p:inputText id="description" value="#{bean.description}"></p:inputText>
 		
-		<h:commandButton value="valider" action="#{bean.update()}"></h:commandButton>	
-		<h:commandButton value="retour" action="index"></h:commandButton>
+		<p:commandButton value="valider" action="#{bean.update()}"></p:commandButton>	
+		<p:commandButton value="retour" action="index"></p:commandButton>
 		
 		
 		</h:form>
