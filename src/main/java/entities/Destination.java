@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,11 +40,11 @@ public class Destination {
 	private String description;
 	@Column(name="region")
 	private String region;
-//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinColumn(name="fk_destination")
-//	@JoinTable(name= "dates_voyages")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="fk_destination")
+	@JoinTable(name= "dates_voyages")
 	
-//	private List<DatesVoyage> listeDV;
+	private List<DatesVoyage> listeDV = new ArrayList<>();
 	
 	public Destination(){}
 	
@@ -53,7 +54,7 @@ public class Destination {
 		
 		this.description = description;
 		this.region = region;
-//		this.listeDV = listeDV;
+		
 	}
 
 
