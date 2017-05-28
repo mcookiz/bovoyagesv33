@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,8 +23,7 @@ import javax.persistence.Table;
 				@NamedQuery(name="getDestinationByRegion",
 							query="select d from Destination d where d.region=:region "),
 				@NamedQuery(name="getAll",query="select d from Destination d")
-//				@NamedQuery(name="showDates",
-//							query="select d from Destination d where d"}
+
 })
 
 @Entity
@@ -39,11 +39,11 @@ public class Destination {
 	private String description;
 	@Column(name="region")
 	private String region;
-//	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-//	@JoinColumn(name="fk_destination")
-//	@JoinTable(name= "dates_voyages")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="fk_destination")
 	
-//	private List<DatesVoyage> listeDV;
+	
+	private List<DatesVoyage> listeDV = new ArrayList<>();
 	
 	public Destination(){}
 	
@@ -53,7 +53,14 @@ public class Destination {
 		
 		this.description = description;
 		this.region = region;
-//		this.listeDV = listeDV;
+	}
+
+
+	public Destination(String description, String region, List<DatesVoyage> listeDV) {
+		
+		this.description = description;
+		this.region = region;
+		this.listeDV = listeDV;
 	}
 
 
@@ -77,12 +84,12 @@ public class Destination {
 		this.region = region;
 	}
 
-//	public List<DatesVoyage> getListeDV() {
-//		return listeDV;
-//	}
-//	public void setListeDV(List<DatesVoyage> listeDV) {
-//		this.listeDV = listeDV;
-//	}
+	public List<DatesVoyage> getListeDV() {
+		return listeDV;
+	}
+	public void setListeDV(List<DatesVoyage> listeDV) {
+		this.listeDV = listeDV;
+	}
 
 
 	@Override

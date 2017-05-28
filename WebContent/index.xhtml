@@ -16,7 +16,8 @@
 			<h:commandButton value="add Destination" action="addDestination"></h:commandButton>
 			
 			Rechercher par région : <h:inputText value="#{bean.region}"></h:inputText>
-			<h:commandButton value="Rechercher" action="#{bean.startSearchByRegion(bean.region)}"></h:commandButton>
+			<h:commandButton value="Rechercher"
+				action="#{bean.startSearchByRegion(bean.region)}"></h:commandButton>
 
 
 
@@ -34,16 +35,24 @@
 
 
 				<h:column>
-				
-				<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
-				<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
+
+					<h:commandButton value="update" action="#{bean.startUpdate(d.id)}"></h:commandButton>
+					<h:commandButton value="delete" action="#{service.remove(d.id)}"></h:commandButton>
 				</h:column>
 
 
 
-			
-			</h:dataTable>
 
+			</h:dataTable>
+			<p:dataTable var="d" value="#{service.all}">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Region" />
+					</f:facet>
+					<h:outputText value="#{d.region}" />
+				</p:column>
+
+</p:dataTable>
 
 
 
