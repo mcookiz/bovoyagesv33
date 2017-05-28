@@ -1,7 +1,10 @@
 package jsf;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.Conversation;
@@ -94,6 +97,8 @@ public class Bean implements Serializable {
 		
 		
 	}
+	
+	
 	
 	public String startSearchByRegion(String region) {
 		startConversation();
