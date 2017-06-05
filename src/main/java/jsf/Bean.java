@@ -1,32 +1,47 @@
 package jsf;
 
 import java.io.Serializable;
-import java.text.Format;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+
+import javax.faces.application.FacesMessage;
+
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 import entities.DatesVoyage;
 import entities.Destination;
 import service.Service;
 
 @Named("bean")
-@ConversationScoped
+@ViewScoped
 public class Bean implements Serializable {
-	@Inject Service service;
-	
-	@Inject Conversation conv;
-    private Long id;
+	@Inject
+	Service service;
+
+	@Inject
+	Conversation conv;
+	private Long id;
 	private String region;
 	private String description;
-	private List<Destination>ld = new ArrayList<>();
-	private List<DatesVoyage>ldv= new ArrayList<>();
+	private List<DatesVoyage> ldv = new ArrayList<>();
+	List<Destination> ld = new ArrayList<>();
+
+	@PostConstruct
+	public void init() {
+		ld = service.getAll();
+	}
 
 	public Long getId() {
 		return id;
@@ -54,8 +69,6 @@ public class Bean implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
 
 	public List<DatesVoyage> getLdv() {
 		return ldv;
@@ -72,11 +85,12 @@ public class Bean implements Serializable {
 		return "index";
 
 	}
-	
+
 	public String startSave(Destination d) {
 		startConversation();
-		
-		return "addDestination";}
+
+		return "addDestination";
+	}
 
 	public String update() {
 		Destination d = new Destination(description, region, ldv);
@@ -86,6 +100,7 @@ public class Bean implements Serializable {
 		return "index";
 
 	}
+
 	public String startUpdate(long id) {
 		startConversation();
 		Destination d = service.getDestinationById(id);
@@ -94,18 +109,15 @@ public class Bean implements Serializable {
 		this.setDescription(d.getDescription());
 		this.setLdv(d.getListeDV());
 		return "updateDestination";
-		
-		
+
 	}
-	
-	
-	
-	public String startSearchByRegion(String region) {
-		startConversation();
-		this.setLd(service.getDestinationByRegion(region));
-		return "searchByRegion";	
-	}
-	
+
+	// public String startSearchByRegion(String region) {
+	// startConversation();
+	// this.setLd(service.getDestinationByRegion(region));
+	// return "searchByRegion";
+	// }
+
 	public String remove(long id) {
 		Destination d = new Destination(description, region, ldv);
 		d.setId(id);
@@ -113,17 +125,50 @@ public class Bean implements Serializable {
 		return "index";
 
 	}
+
+	public void onRowEdit(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Destination Edited");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		service.update((Destination) event.getObject());
+
+	}
+
+	public void onRowCancel(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Edit Cancelled");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onCellEdit(CellEditEvent event) {
+		Object oldValue = event.getOldValue();
+		Object newValue = event.getNewValue();
+
+		if (newValue != null && !newValue.equals(oldValue)) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed",
+					"Old: " + oldValue + ", New:" + newValue);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
 	
-	public void startConversation(){
-		if(conv.isTransient()){
+	
+
+	public void startConversation() {
+		if (conv.isTransient()) {
 			conv.begin();
 		}
 	}
 
-	public void endConversation(){
-		if(!conv.isTransient()){
+	public void endConversation() {
+		if (!conv.isTransient()) {
 			conv.end();
 		}
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
 	}
 
 	public List<Destination> getLd() {
@@ -133,4 +178,5 @@ public class Bean implements Serializable {
 	public void setLd(List<Destination> ld) {
 		this.ld = ld;
 	}
+
 }

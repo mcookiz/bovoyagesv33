@@ -63,7 +63,10 @@ public class Destination {
 		this.listeDV = listeDV;
 	}
 
-
+	public String getStringId(){
+		return String.valueOf(id);
+		
+	}
 	public long getId() {
 		return id;
 	}

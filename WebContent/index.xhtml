@@ -12,6 +12,7 @@
 	<title>BoVoyages</title>
 </h:head>
 <h:body>
+
 	<f:view>
 		<div class="ui-g">
 			<div class="ui-g-2">
@@ -41,12 +42,21 @@
 				</h:form>
 			</div>
 			<div class="ui-g-7">
-				<h:form>
-					<p:dataTable var="d" value="#{service.all}" stickyHeader="true">
+
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+					<p:dataTable var="d" value="#{bean.ld}" stickyHeader="true"
+						editable="true">
 						<f:facet name="header">
        	 			Liste des Destinations
     			</f:facet>
+
+						<p:ajax event="rowEdit" listener="#{bean.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel" listener="#{bean.onRowCancel}"
+							update=":form:msgs" />
 						<p:column priority="3">
+
 							<f:facet name="header">
 								<h:outputText value="Region" />
 							</f:facet>
@@ -114,15 +124,17 @@
 
 						</p:column>
 
-						<p:column priority="5">
-							<f:facet name="header">
-								<h:outputText value="Options" />
-							</f:facet>
-							<p:commandButton value="update"
-								action="#{bean.startUpdate(d.id)}"></p:commandButton>
-							<p:commandButton value="delete" action="#{service.remove(d.id)}"></p:commandButton>
 
+						<p:column >
+						
+							<p:rowEditor/>
+							<p:commandButton  icon="fa fa-fw fa-remove" action="#{bean.remove(d.id)}"/>
+						
 						</p:column>
+						
+
+							
+						
 
 
 					</p:dataTable>
