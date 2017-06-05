@@ -112,11 +112,11 @@ public class Bean implements Serializable {
 
 	}
 
-	// public String startSearchByRegion(String region) {
-	// startConversation();
-	// this.setLd(service.getDestinationByRegion(region));
-	// return "searchByRegion";
-	// }
+//	 public String SearchByRegion(String region) {
+//	 startConversation();
+//	 this.setLd(service.getDestinationByRegion(region));
+//	 return "searchByRegion";
+//	 }
 
 	public String remove(long id) {
 		Destination d = new Destination(description, region, ldv);
